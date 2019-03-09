@@ -1,22 +1,31 @@
 import _ from 'lodash';
-import './style.css';
-import Icon from './icon.jpg';
-import Data from './data.xml';
+import printMe from './print';
+import './styles.css';
 
 function component() {
+	let main = document.createElement('div');
 	let element = document.createElement('div');
+	let element2 = document.createElement('div');
+	let btn = document.createElement('button');
 
-	element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-	element.classList.add("hello");
+	element2.innerHTML = _.join(['Hello Mark'], ' ');
+	element.innerHTML = _.join(['Hello mixed up thing--', 'webpack'], ' ');
+	btn.innerHTML = 'Click me and check the console!';
+	btn.onclick = printMe;
 
-	// Add the image to our existing div.
-	var myIcon = new Image();
-	myIcon.src = Icon;
-	element.appendChild(myIcon);
-
-	console.log(Data);
+	main.a
+	main.appendChild(element2);
+	main.appendChild(element);
+	main.appendChild(btn);
 
 	return element;
 }
 
 document.body.appendChild(component());
+
+if (module.hot) {
+  module.hot.accept('./print.js', function () {
+  	console.log('Accepting the updated printMe module!');
+  	printMe();
+ })
+}
