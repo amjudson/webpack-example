@@ -18,7 +18,7 @@ function component() {
 	main.appendChild(element);
 	main.appendChild(btn);
 
-	return element;
+	return main;
 }
 
 document.body.appendChild(component());

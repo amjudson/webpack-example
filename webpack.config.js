@@ -20,10 +20,25 @@ module.exports = {
 	plugins: [
 		// new CleanWebpackPlugin(['dist/*']) for < v2 versions of CleanWebpackPlugin
 		new CleanWebpackPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
-			title: 'Output Management'
-		}),
-		new webpack.HotModuleReplacementPlugin()
+			inject: false,
+			template: require('html-webpack-template'),
+			appMountId: 'app',
+			headHtmlSnippet:
+				'<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" >',
+			// default div id="app"
+			bodyHtmlSnippet: '<div id="container"></div>',
+			meta: [
+				{
+					name: 'description',
+					content:
+						'A better default template for html-webpack-plugin.'
+				}
+			],
+			lang: 'en-US',
+			title: 'Webpack Examples',
+		})
 	],
 	module: {
 		rules: [
