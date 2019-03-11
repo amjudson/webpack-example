@@ -6,8 +6,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"watch": "webpack --watch",
-		"start": "npm-run-all --parallel watch build devserver",
-		"devserver": "webpack-dev-server --open --hotOnly",
+		"start": "npm run all devserver",
+		"devserver": "webpack-dev-server --open",
 		"server": "node server.js",
 		"build": "webpack"
 	},

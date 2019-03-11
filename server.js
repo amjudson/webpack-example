@@ -1,7 +1,8 @@
-const express = require('express');
-const webpack = require('webpack');
-const colors = require('colors');
-const webpackDevMiddleware = require('webpack-dev-middleware');
+import express from 'express';
+import webpack from 'webpack';
+import colors from 'colors';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import * as consts from './constants';
 
 const app = express();
 const config = require('./webpack.config.js');
@@ -13,7 +14,10 @@ app.use(webpackDevMiddleware(compiler, {
 	publicPath: config.output.publicPath
 }));
 
+app.use(require('webpack-hot-middleware')(compiler));
+
 // Serve the files on port 3000.
-app.listen(3000, function () {
+app.listen(consts.port, function (err) {
+	open(`http://localhost:${consts.port}`);
 	console.log('Example app listening on port 3000!\n'.green);
 });
